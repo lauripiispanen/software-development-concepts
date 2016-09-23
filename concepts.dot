@@ -2,15 +2,17 @@ graph software_concepts {
   layout="fdp";
   Java -- JVM -- bytecode
   Java -- OOP
+  JVM -- "Garbage collection"
+  "Garbage collection" -- "Generational GC" -- JVM
 
-  Java -- "Java Libraries"
+  Java -- "Java libraries"
 
-  "Java Libraries" -- Hibernate -- "Relational databases"
+  "Java libraries" -- Hibernate -- "Relational databases"
   Java -- JDBC -- "Relational databases"
 
   "Programming Languages" -- Java
-  "Programming Languages" -- Scala -- "Scala Libraries"
-  "Programming Languages" -- Python -- "Python Libraries"
+  "Programming Languages" -- Scala -- "Scala libraries"
+  "Programming Languages" -- Python -- "Python libraries"
   "Programming Languages" -- Javascript
   "Programming Languages" -- "C++"
   "Programming Languages" -- "Objective-C"
@@ -21,13 +23,18 @@ graph software_concepts {
   "Programming Languages" -- "F#"
   "Programming Languages" -- "Ruby"
   "Programming Languages" -- Rust
+  "Programming Languages" -- Groovy
 
   "Dependency Management" -- Maven
   "Dependency Management" -- Gradle
   "Dependency Management" -- npm
 
-  "Dependency Injection" -- "Spring Framework" -- "Java Libraries"
-  "Dependency Injection" -- "Guice" -- "Java Libraries"
+  "Dependency Injection" -- "Spring Framework" -- "Java libraries"
+  "Dependency Injection" -- "Guice" -- "Java libraries"
+
+  "Java libraries" -- "Spring Boot" -- "Spring Framework"
+  "Java libraries" -- "AspectJ" -- "Aspect-oriented programming"
+  "Java libraries" -- cglib -- bytecode
 
   "Continuous Integration" -- Jenkins
   "Continuous Integration" -- Travis
@@ -40,12 +47,15 @@ graph software_concepts {
   "Build tools" -- "Continuous Integration"
   "Build tools" -- CMake
   "Build tools" -- MSBuild -- ".Net"
+  "Build tools" -- SBT -- Scala
 
   "C#" -- ".Net"
 
   "Ops automation" -- ansible
   "Ops automation" -- chef
   "Ops automation" -- puppet
+  "Ops automation" -- SaltStack
+  "Ops automation" -- CFEngine
   "Ops automation" -- "Continuous Integration"
 
   "Ops automation" -- Docker
@@ -67,10 +77,11 @@ graph software_concepts {
   "Google Container Engine" -- Kubernetes
 
   AWS -- S3
-  AWS -- DynamoDB -- "NoSQL databases"
+  AWS -- DynamoDB -- "Key-value stores"
   AWS -- RDS -- "Relational databases"
   AWS -- EC2 -- "Ops automation"
   AWS -- "EC2 Container Service" -- Docker
+  AWS -- Route53
 
 
   npm -- "node.js"
@@ -90,7 +101,24 @@ graph software_concepts {
   "Dynamic typing" -- Python
   "Dynamic typing" -- Javascript
   "Dynamic typing" -- Clojure
+  "Dynamic typing" -- Groovy
 
+  Java -- "Java EE" -- "Application Servers & Servlet Containers"
+  "Application Servers & Servlet Containers" -- Tomcat
+  "Application Servers & Servlet Containers" -- JBoss
+  "Application Servers & Servlet Containers" -- GlassFish
+  "Application Servers & Servlet Containers" -- Servlets
+
+  "Java EE" -- JPA -- Hibernate
+  "Java EE" -- EJB
+  "Java EE" -- JSP
+  "Java EE" -- Servlets
+  "Java EE" -- JSF
+
+  Java -- "Java SE"
+  "Java SE" -- Applets
+  "Java SE" -- Swing
+  "Java SE" -- Concurrency -- Threading
 
   Swift -- iOS
   "Objective-C" -- iOS
@@ -102,9 +130,15 @@ graph software_concepts {
   OOP -- "Design Patterns"
 
   Python -- OOP
+  Python -- "Garbage collection"
 
   Scala -- "Functional Programming"
+  Scala -- traits
+  Scala -- "implicit conversions"
+  Scala -- "for-comprehensions"
   "F#" -- "Functional Programming"
+
+  Swift -- "Reference counting" -- "Objective-C"
 
   Haskell -- "Functional Programming"
   Clojure -- "Functional Programming"
@@ -120,12 +154,18 @@ graph software_concepts {
   Javascript -- "node.js"
   Javascript -- "web frontend"
   Javascript -- ES6
+  Javascript -- ES7
+  Javascript -- Promises
+  Javascript -- "Garbage collection"
 
   "web frontend" -- AngularJS
   "web frontend" -- React -- Redux
 
   "web frontend" -- HTML
   "web frontend" -- CSS -- BEM
+
+  React -- "React Native" -- iOS
+  "React Native" -- Android
 
   CSS -- Bootstrap
   HTML -- Bootstrap
@@ -134,26 +174,36 @@ graph software_concepts {
   HTML -- "Responsive web design"
 
   "node.js" -- V8
+  "node.js" -- "Event emitters"
   "node.js" -- "node.js addons" -- "C++"
 
   "node.js" -- "express.js"
 
-  "Relational databases" -- "NoSQL Databases"
+  "Relational databases" -- "NoSQL databases"
 
   SQL -- "Relational databases" -- PostgreSQL
   "Relational databases" -- "MySQL/MariaDB"
   "Relational databases" -- "SQL Server"
+
+  "Key-value stores" -- Riak
+  "Key-value stores" -- Redis
+  "Key-value stores" -- Cassandra -- "Column-oriented DBMS"
+  "Column-oriented DBMS" -- HBase -- HDFS
+  "Key-value stores" -- S3
 
   SQL -- Joins
   SQL -- "Stored procedures"
 
   "Relational databases" -- ACID
 
-  "NoSQL Databases" -- MongoDB
-  "NoSQL Databases" -- Riak
-  "NoSQL Databases" -- Cassandra
+  "NoSQL databases" -- MongoDB
+  "NoSQL databases" -- Riak
+  "NoSQL databases" -- Cassandra
 
-  "NoSQL Databases" -- "CAP Theorem" -- "Relational databases"
+  "NoSQL databases" -- "Key-value stores"
+  "NoSQL databases" -- "Graph databases" -- Neo4j
+
+  "NoSQL databases" -- "CAP Theorem" -- "Relational databases"
   "CAP Theorem" -- ACID
 
   FRP -- "Functional Programming"
@@ -170,22 +220,36 @@ graph software_concepts {
   "Server-side web frameworks" -- Wicket
   "Server-side web frameworks" -- Struts
   "Server-side web frameworks" -- "Play Framework"
+  "Server-side web frameworks" -- "Grails Framework" -- Groovy
 
   Ruby -- "Ruby on Rails"
-  "Python Libraries" -- Django
-  "Java Libraries" -- Wicket
-  "Java Libraries" -- Struts
-  "Java Libraries" -- "Play Framework"
-  "Scala Libraries" -- "Play Framework"
+  "Python libraries" -- Django
+  "Java libraries" -- Wicket
+  "Java libraries" -- Struts
+  "Java libraries" -- "Play Framework"
+  "Scala libraries" -- "Play Framework"
+  "Scala libraries" -- scalaz
+  "Scala libraries" -- dispatch
 
   "Native mobile development" -- iOS
   "Native mobile development" -- Android
   "Native mobile development" -- Cordova
   "Native mobile development" -- Xamarin
 
+  Xamarin -- Android
+  Xamarin -- iOS
+  Xamarin -- ".Net"
+
   Cordova -- HTML
   Cordova -- CSS
 
-  Cordova -- HTML
+  iOS -- Autolayout
+  iOS -- "Grand Central Dispatch" -- Threading
+
+  iOS -- "OpenGL ES"
+  Android -- "OpenGL ES"
+
+  iOS -- "Apple Metal"
+  iOS -- tvOS
 
 }
