@@ -5,8 +5,8 @@ graph software_concepts {
 
   Java -- "Java Libraries"
 
-  "Java Libraries" -- Hibernate -- "SQL Databases"
-  Java -- JDBC -- "SQL Databases"
+  "Java Libraries" -- Hibernate -- "Relational databases"
+  Java -- JDBC -- "Relational databases"
 
   "Programming Languages" -- Java
   "Programming Languages" -- Scala -- "Scala Libraries"
@@ -20,6 +20,7 @@ graph software_concepts {
   "Programming Languages" -- "C#"
   "Programming Languages" -- "F#"
   "Programming Languages" -- "Ruby"
+  "Programming Languages" -- Rust
 
   "Dependency Management" -- Maven
   "Dependency Management" -- Gradle
@@ -47,8 +48,6 @@ graph software_concepts {
   "Ops automation" -- puppet
   "Ops automation" -- "Continuous Integration"
 
-  "Ops automation" -- AWS
-
   "Ops automation" -- Docker
   Containerization -- Docker
 
@@ -61,6 +60,17 @@ graph software_concepts {
 
   PaaS -- AWS
   PaaS -- Heroku
+  PaaS -- "Google Cloud Platform"
+
+  "Google Cloud Platform" -- "Compute Engine"
+  "Google Cloud Platform" -- "Google Container Engine" -- Docker
+  "Google Container Engine" -- Kubernetes
+
+  AWS -- S3
+  AWS -- DynamoDB -- "NoSQL databases"
+  AWS -- RDS -- "Relational databases"
+  AWS -- EC2 -- "Ops automation"
+  AWS -- "EC2 Container Service" -- Docker
 
 
   npm -- "node.js"
@@ -75,6 +85,7 @@ graph software_concepts {
   "Static typing" -- Swift
   "Static typing" -- Haskell
   "Static typing" -- "C#"
+  "Static typing" -- Rust
 
   "Dynamic typing" -- Python
   "Dynamic typing" -- Javascript
@@ -101,26 +112,49 @@ graph software_concepts {
   Clojure -- Clojurescript
 
   Clojurescript -- "web frontend"
+  Clojurescript -- Om -- React
 
   "Functional Programming" -- "Lambda calculus"
   "Functional Programming" -- "Monadic laws"
 
   Javascript -- "node.js"
   Javascript -- "web frontend"
+  Javascript -- ES6
 
   "web frontend" -- AngularJS
   "web frontend" -- React -- Redux
+
+  "web frontend" -- HTML
+  "web frontend" -- CSS -- BEM
+
+  CSS -- Bootstrap
+  HTML -- Bootstrap
+
+  CSS -- "Responsive web design"
+  HTML -- "Responsive web design"
 
   "node.js" -- V8
   "node.js" -- "node.js addons" -- "C++"
 
   "node.js" -- "express.js"
 
-  SQL -- NoSQL
+  "Relational databases" -- "NoSQL Databases"
 
-  SQL -- "SQL Databases" -- PostgreSQL
-  "SQL Databases" -- "MySQL/MariaDB"
-  "SQL Databases" -- "SQL Server"
+  SQL -- "Relational databases" -- PostgreSQL
+  "Relational databases" -- "MySQL/MariaDB"
+  "Relational databases" -- "SQL Server"
+
+  SQL -- Joins
+  SQL -- "Stored procedures"
+
+  "Relational databases" -- ACID
+
+  "NoSQL Databases" -- MongoDB
+  "NoSQL Databases" -- Riak
+  "NoSQL Databases" -- Cassandra
+
+  "NoSQL Databases" -- "CAP Theorem" -- "Relational databases"
+  "CAP Theorem" -- ACID
 
   FRP -- "Functional Programming"
   FRP -- "bacon.js" -- Javascript
@@ -137,12 +171,21 @@ graph software_concepts {
   "Server-side web frameworks" -- Struts
   "Server-side web frameworks" -- "Play Framework"
 
-  "Ruby" -- "Ruby on Rails"
+  Ruby -- "Ruby on Rails"
   "Python Libraries" -- Django
   "Java Libraries" -- Wicket
   "Java Libraries" -- Struts
   "Java Libraries" -- "Play Framework"
   "Scala Libraries" -- "Play Framework"
 
+  "Native mobile development" -- iOS
+  "Native mobile development" -- Android
+  "Native mobile development" -- Cordova
+  "Native mobile development" -- Xamarin
+
+  Cordova -- HTML
+  Cordova -- CSS
+
+  Cordova -- HTML
 
 }
