@@ -1,0 +1,148 @@
+graph software_concepts {
+  layout="fdp";
+  Java -- JVM -- bytecode
+  Java -- OOP
+
+  Java -- "Java Libraries"
+
+  "Java Libraries" -- Hibernate -- "SQL Databases"
+  Java -- JDBC -- "SQL Databases"
+
+  "Programming Languages" -- Java
+  "Programming Languages" -- Scala -- "Scala Libraries"
+  "Programming Languages" -- Python -- "Python Libraries"
+  "Programming Languages" -- Javascript
+  "Programming Languages" -- "C++"
+  "Programming Languages" -- "Objective-C"
+  "Programming Languages" -- Swift
+  "Programming Languages" -- Haskell
+  "Programming Languages" -- Clojure
+  "Programming Languages" -- "C#"
+  "Programming Languages" -- "F#"
+  "Programming Languages" -- "Ruby"
+
+  "Dependency Management" -- Maven
+  "Dependency Management" -- Gradle
+  "Dependency Management" -- npm
+
+  "Dependency Injection" -- "Spring Framework" -- "Java Libraries"
+  "Dependency Injection" -- "Guice" -- "Java Libraries"
+
+  "Continuous Integration" -- Jenkins
+  "Continuous Integration" -- Travis
+  "Continuous Integration" -- CircleCI
+  "Continuous Integration" -- TeamCity
+  "Continuous Integration" -- Bamboo
+
+  "Build tools" -- Maven
+  "Build tools" -- Gradle
+  "Build tools" -- "Continuous Integration"
+  "Build tools" -- CMake
+  "Build tools" -- MSBuild -- ".Net"
+
+  "C#" -- ".Net"
+
+  "Ops automation" -- ansible
+  "Ops automation" -- chef
+  "Ops automation" -- puppet
+  "Ops automation" -- "Continuous Integration"
+
+  "Ops automation" -- AWS
+
+  "Ops automation" -- Docker
+  Containerization -- Docker
+
+  "Version Control" -- "Continuous Integration"
+  "Version Control" -- Git
+  "Version Control" -- SVN
+  "Version Control" -- CVS
+
+  "Monitoring" -- "New Relic"
+
+  PaaS -- AWS
+  PaaS -- Heroku
+
+
+  npm -- "node.js"
+
+  Gradle -- Java
+  Gradle -- Android
+  Java -- Android
+
+  "Static typing" -- Java
+  "Static typing" -- Scala
+  "Static typing" -- "C++"
+  "Static typing" -- Swift
+  "Static typing" -- Haskell
+  "Static typing" -- "C#"
+
+  "Dynamic typing" -- Python
+  "Dynamic typing" -- Javascript
+  "Dynamic typing" -- Clojure
+
+
+  Swift -- iOS
+  "Objective-C" -- iOS
+
+  Android -- Kotlin
+
+  Maven -- Java
+
+  OOP -- "Design Patterns"
+
+  Python -- OOP
+
+  Scala -- "Functional Programming"
+  "F#" -- "Functional Programming"
+
+  Haskell -- "Functional Programming"
+  Clojure -- "Functional Programming"
+
+  Clojure -- Clojurescript
+
+  Clojurescript -- "web frontend"
+
+  "Functional Programming" -- "Lambda calculus"
+  "Functional Programming" -- "Monadic laws"
+
+  Javascript -- "node.js"
+  Javascript -- "web frontend"
+
+  "web frontend" -- AngularJS
+  "web frontend" -- React -- Redux
+
+  "node.js" -- V8
+  "node.js" -- "node.js addons" -- "C++"
+
+  "node.js" -- "express.js"
+
+  SQL -- NoSQL
+
+  SQL -- "SQL Databases" -- PostgreSQL
+  "SQL Databases" -- "MySQL/MariaDB"
+  "SQL Databases" -- "SQL Server"
+
+  FRP -- "Functional Programming"
+  FRP -- "bacon.js" -- Javascript
+  FRP -- RX -- Javascript
+  RX -- Java
+  RX -- Swift
+  RX -- "C#"
+
+  "C#" -- Unity
+
+  "Server-side web frameworks" -- "Ruby on Rails"
+  "Server-side web frameworks" -- Django
+  "Server-side web frameworks" -- Wicket
+  "Server-side web frameworks" -- Struts
+  "Server-side web frameworks" -- "Play Framework"
+
+  "Ruby" -- "Ruby on Rails"
+  "Python Libraries" -- Django
+  "Java Libraries" -- Wicket
+  "Java Libraries" -- Struts
+  "Java Libraries" -- "Play Framework"
+  "Scala Libraries" -- "Play Framework"
+
+
+}
