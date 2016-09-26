@@ -6,6 +6,7 @@ graph software_concepts {
   "Garbage collection" -- "Generational GC" -- JVM
 
   Java -- "Java libraries"
+  Java -- Reflection
 
   "Java libraries" -- Hibernate -- "Relational databases"
   Java -- JDBC -- "Relational databases"
@@ -28,6 +29,10 @@ graph software_concepts {
   "Dependency Management" -- Maven
   "Dependency Management" -- Gradle
   "Dependency Management" -- npm
+  "Dependency Management" -- CocoaPods -- iOS
+  "Dependency Management" -- RubyGems -- Ruby
+  "Dependency Management" -- NuGet -- ".Net"
+  RubyGems -- Bundler
 
   "Dependency Injection" -- "Spring Framework" -- "Java libraries"
   "Dependency Injection" -- "Guice" -- "Java libraries"
@@ -50,6 +55,8 @@ graph software_concepts {
   "Build tools" -- SBT -- Scala
 
   "C#" -- ".Net"
+  "C#" -- "C# libraries"
+  "C#" -- OOP
 
   "Ops automation" -- ansible
   "Ops automation" -- chef
@@ -128,9 +135,12 @@ graph software_concepts {
   Maven -- Java
 
   OOP -- "Design Patterns"
+  "Design Patterns" -- "Active Record"
 
   Python -- OOP
   Python -- "Garbage collection"
+
+  "C++" -- "OOP"
 
   Scala -- "Functional Programming"
   Scala -- traits
@@ -139,6 +149,7 @@ graph software_concepts {
   "F#" -- "Functional Programming"
 
   Swift -- "Reference counting" -- "Objective-C"
+  Swift -- OOP
 
   Haskell -- "Functional Programming"
   Clojure -- "Functional Programming"
@@ -184,6 +195,7 @@ graph software_concepts {
   SQL -- "Relational databases" -- PostgreSQL
   "Relational databases" -- "MySQL/MariaDB"
   "Relational databases" -- "SQL Server"
+  "Relational databases" -- SQLite
 
   "Key-value stores" -- Riak
   "Key-value stores" -- Redis
@@ -209,11 +221,15 @@ graph software_concepts {
   FRP -- "Functional Programming"
   FRP -- "bacon.js" -- Javascript
   FRP -- RX -- Javascript
-  RX -- Java
-  RX -- Swift
+  RX -- RxJava -- "Java libraries"
+  RX -- RxSwift
   RX -- "C#"
 
+  ".Net" -- LINQ
   "C#" -- Unity
+  "Active record" -- ".Net"
+  "Active record" -- "Ruby on Rails"
+
 
   "Server-side web frameworks" -- "Ruby on Rails"
   "Server-side web frameworks" -- Django
@@ -223,6 +239,7 @@ graph software_concepts {
   "Server-side web frameworks" -- "Grails Framework" -- Groovy
 
   Ruby -- "Ruby on Rails"
+  Ruby -- "Ruby libraries"
   "Python libraries" -- Django
   "Java libraries" -- Wicket
   "Java libraries" -- Struts
@@ -251,5 +268,22 @@ graph software_concepts {
 
   iOS -- "Apple Metal"
   iOS -- tvOS
+
+  iOS -- SQLite
+  Android -- SQLite
+
+  iOS -- "iOS libraries" -- Realm
+  "iOS libraries" -- Alamofire
+  "iOS libraries" -- RxSwift
+
+  TDD -- BDD
+  TDD -- ATDD
+  ATDD -- "Robot Framework"
+  ATDD -- FitNesse
+  BDD -- RSpec -- "Ruby libraries"
+  BDD -- Cucumber
+  TDD -- JUnit -- "Java libraries"
+  TDD -- NUnit -- "C# libraries"
+
 
 }
