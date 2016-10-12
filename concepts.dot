@@ -5,6 +5,8 @@ graph software_concepts {
   JVM -- "Garbage collection"
   "Garbage collection" -- "Generational GC" -- JVM
 
+  JVM -- "vert.x"
+
   Java -- "Java libraries"
   Java -- Reflection
 
@@ -25,6 +27,9 @@ graph software_concepts {
   "Programming Languages" -- "Ruby"
   "Programming Languages" -- Rust
   "Programming Languages" -- Groovy
+  "Programming Languages" -- PHP -- Composer -- "Dependency Management"
+
+  PHP -- Laravel -- "Server-side web frameworks"
 
   "Dependency Management" -- Maven
   "Dependency Management" -- Gradle
@@ -46,6 +51,8 @@ graph software_concepts {
   "Continuous Integration" -- CircleCI
   "Continuous Integration" -- TeamCity
   "Continuous Integration" -- Bamboo
+
+  "Build tools" -- Leiningen -- Clojure
 
   "Build tools" -- Maven
   "Build tools" -- Gradle
@@ -154,6 +161,9 @@ graph software_concepts {
   Haskell -- "Functional Programming"
   Clojure -- "Functional Programming"
 
+  Clojure -- Compojure
+  Clojure -- Ring -- Compojure
+
   Clojure -- Clojurescript
 
   Clojurescript -- "web frontend"
@@ -165,12 +175,28 @@ graph software_concepts {
   Javascript -- "node.js"
   Javascript -- "web frontend"
   Javascript -- ES6
-  Javascript -- ES7
+  Javascript -- ES2016
   Javascript -- Promises
   Javascript -- "Garbage collection"
 
-  "web frontend" -- AngularJS
-  "web frontend" -- React -- Redux
+  "node.js" -- Grunt
+  "node.js" -- Gulp
+  "node.js" -- Webpack
+  "web frontend" -- Browserify -- npm
+  "web frontend" -- Bower
+
+  ES6 -- babel
+  ES2016 -- babel
+
+  Javascript -- "Javascript libraries"
+
+  "Javascript libraries" -- Angular
+  "Javascript libraries" -- "Angular 2"
+  Angular -- "Angular 2"
+  "Javascript libraries" -- React -- Redux
+
+  "Javascript libraries" -- "Underscore/Lodash"
+  "Javascript libraries" -- Ramda
 
   "web frontend" -- HTML
   "web frontend" -- CSS -- BEM
@@ -178,8 +204,12 @@ graph software_concepts {
   React -- "React Native" -- iOS
   "React Native" -- Android
 
-  CSS -- Bootstrap
-  HTML -- Bootstrap
+  CSS -- "Twitter Bootstrap"
+  HTML -- "Twitter Bootstrap"
+
+  "Twitter Bootstrap" -- "Foundation"
+  "Twitter Bootstrap" -- "Responsive web design"
+  "Foundation" -- "Responsive web design"
 
   CSS -- "Responsive web design"
   HTML -- "Responsive web design"
@@ -212,6 +242,8 @@ graph software_concepts {
   "NoSQL databases" -- Riak
   "NoSQL databases" -- Cassandra
 
+  MongoDB -- Mongoose -- "node.js"
+
   "NoSQL databases" -- "Key-value stores"
   "NoSQL databases" -- "Graph databases" -- Neo4j
 
@@ -219,11 +251,14 @@ graph software_concepts {
   "CAP Theorem" -- ACID
 
   FRP -- "Functional Programming"
-  FRP -- "bacon.js" -- Javascript
+  FRP -- "bacon.js" -- "Javascript libraries"
   FRP -- RX -- Javascript
   RX -- RxJava -- "Java libraries"
   RX -- RxSwift
   RX -- "C#"
+
+  "Functional Programming" -- Elm -- "web frontend"
+  "Functional Programming" -- Purescript -- Javascript
 
   ".Net" -- LINQ
   "C#" -- Unity
