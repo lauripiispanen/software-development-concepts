@@ -55,59 +55,14 @@
       var i, j;
       var selectedNode = params.nodes[0];
       var degrees = 2;
-
-      // mark all nodes as hard to read.
-      for (var nodeId in allNodes) {
-        allNodes[nodeId].color = 'rgba(200, 200, 200, 0.5)';
-        if (allNodes[nodeId].hiddenLabel === undefined) {
-          allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
-          allNodes[nodeId].label = undefined;
-        }
-      }
       var connectedNodes = network.getConnectedNodes(selectedNode);
-      var allConnectedNodes = [];
 
-      // get the second degree nodes
-      for (i = 1; i < degrees; i++) {
-        for (j = 0; j < connectedNodes.length; j++) {
-          allConnectedNodes = allConnectedNodes.concat(network.getConnectedNodes(connectedNodes[j]));
-        }
-      }
-
-      // all second degree nodes
-      for (i = 0; i < allConnectedNodes.length; i++) {
-        allNodes[allConnectedNodes[i]].color = 'rgba(0, 0, 255, 0.3)';
-        if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
-          allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
-          allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
-        }
-      }
-
-      // all first degree nodes
-      for (i = 0; i < connectedNodes.length; i++) {
-        allNodes[connectedNodes[i]].color = 'rgba(255, 0, 0, 0.3)';
-        if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
-          allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
-          allNodes[connectedNodes[i]].hiddenLabel = undefined;
-        }
-      }
-
-      // the main node .
-      allNodes[selectedNode].color = 'rgba(255, 0, 0, 0.6)';
-      allNodes[selectedNode].clicked = true;
-      if (allNodes[selectedNode].hiddenLabel !== undefined) {
-        allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
-        allNodes[selectedNode].hiddenLabel = undefined;
-      }
+      hideNodes(allNodes);
+      highlightSecondDegreeNodes(allNodes, connectedNodes, degrees);
+      highlightFirstDegreeNodes(allNodes, connectedNodes);
+      highlightMainNode(allNodes, selectedNode);
     } else if (highlightActive === true) {
-      // reset all nodes
-      for (var nodeId in allNodes) {
-        allNodes[nodeId].color = allNodes[nodeId].clicked ? 'rgba(0, 255, 0, 0.4)' : 'rgba(0, 0, 255, 0.3)';
-        if (allNodes[nodeId].hiddenLabel !== undefined) {
-          allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
-          allNodes[nodeId].hiddenLabel = undefined;
-        }
-      }
+      resetNodes(allNodes);
       highlightActive = false
     }
 
@@ -119,5 +74,63 @@
       }
     }
     nodesDataset.update(updateArray);
+  }
+
+  function hideNodes (allNodes) {
+    for (var nodeId in allNodes) {
+      allNodes[nodeId].color = 'rgba(200, 200, 200, 0.5)';
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+  }
+
+  function getAllConnectedNodes (connectedNodes, degrees) {
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        return [].concat(network.getConnectedNodes(connectedNodes[j]));
+      }
+    }
+  }
+
+  function highlightSecondDegreeNodes (allNodes, connectedNodes, degrees) {
+    var allConnectedNodes = getAllConnectedNodes(connectedNodes, degrees);
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      allNodes[allConnectedNodes[i]].color = 'rgba(0, 0, 255, 0.3)';
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+  }
+
+  function highlightFirstDegreeNodes (allNodes, connectedNodes) {
+    for (i = 0; i < connectedNodes.length; i++) {
+      allNodes[connectedNodes[i]].color = 'rgba(255, 0, 0, 0.3)';
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+  }
+
+  function highlightMainNode (allNodes, selectedNode) {
+    allNodes[selectedNode].color = 'rgba(255, 0, 0, 0.6)';
+    allNodes[selectedNode].clicked = true;
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  }
+
+  function resetNodes (allNodes) {
+    for (var nodeId in allNodes) {
+      allNodes[nodeId].color = allNodes[nodeId].clicked ? 'rgba(0, 255, 0, 0.4)' : 'rgba(0, 0, 255, 0.3)';
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
   }
 })();
