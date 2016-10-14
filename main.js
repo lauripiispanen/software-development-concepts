@@ -79,10 +79,7 @@
   function hideNodes (allNodes) {
     for (var nodeId in allNodes) {
       allNodes[nodeId].color = 'rgba(200, 200, 200, 0.5)';
-      if (allNodes[nodeId].hiddenLabel === undefined) {
-        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
-        allNodes[nodeId].label = undefined;
-      }
+      hideLabel(allNodes[nodeId]);
     }
   }
 
@@ -98,39 +95,41 @@
     var allConnectedNodes = getAllConnectedNodes(connectedNodes, degrees);
     for (i = 0; i < allConnectedNodes.length; i++) {
       allNodes[allConnectedNodes[i]].color = 'rgba(0, 0, 255, 0.3)';
-      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
-        allNodes[allConnectedNodes[i]].label = allNodes[allConnectedNodes[i]].hiddenLabel;
-        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
-      }
+      showLabel(allNodes[allConnectedNodes[i]]);
     }
   }
 
   function highlightFirstDegreeNodes (allNodes, connectedNodes) {
     for (i = 0; i < connectedNodes.length; i++) {
       allNodes[connectedNodes[i]].color = 'rgba(255, 0, 0, 0.3)';
-      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
-        allNodes[connectedNodes[i]].label = allNodes[connectedNodes[i]].hiddenLabel;
-        allNodes[connectedNodes[i]].hiddenLabel = undefined;
-      }
+      showLabel(allNodes[connectedNodes[i]]);
     }
   }
 
   function highlightMainNode (allNodes, selectedNode) {
     allNodes[selectedNode].color = 'rgba(255, 0, 0, 0.6)';
     allNodes[selectedNode].clicked = true;
-    if (allNodes[selectedNode].hiddenLabel !== undefined) {
-      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
-      allNodes[selectedNode].hiddenLabel = undefined;
-    }
+    showLabel(allNodes[selectedNode]);
   }
 
   function resetNodes (allNodes) {
     for (var nodeId in allNodes) {
       allNodes[nodeId].color = allNodes[nodeId].clicked ? 'rgba(0, 255, 0, 0.4)' : 'rgba(0, 0, 255, 0.3)';
-      if (allNodes[nodeId].hiddenLabel !== undefined) {
-        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
-        allNodes[nodeId].hiddenLabel = undefined;
-      }
+      showLabel(allNodes[nodeId]);
+    }
+  }
+
+  function hideLabel (node) {
+    if (node.hiddenLabel === undefined) {
+      node.hiddenLabel = node.label;
+      node.label = undefined;
+    }
+  }
+
+  function showLabel (node) {
+    if (node.hiddenLabel !== undefined) {
+      node.label = node.hiddenLabel;
+      node.hiddenLabel = undefined;
     }
   }
 })();
