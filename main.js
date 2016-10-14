@@ -94,6 +94,7 @@
 
       // the main node .
       allNodes[selectedNode].color = 'rgba(255, 0, 0, 0.6)';
+      allNodes[selectedNode].clicked = true;
       if (allNodes[selectedNode].hiddenLabel !== undefined) {
         allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
         allNodes[selectedNode].hiddenLabel = undefined;
@@ -101,7 +102,7 @@
     } else if (highlightActive === true) {
       // reset all nodes
       for (var nodeId in allNodes) {
-        allNodes[nodeId].color = 'rgba(0, 0, 255, 0.3)';
+        allNodes[nodeId].color = allNodes[nodeId].clicked ? 'rgba(0, 255, 0, 0.4)' : 'rgba(0, 0, 255, 0.3)';
         if (allNodes[nodeId].hiddenLabel !== undefined) {
           allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
           allNodes[nodeId].hiddenLabel = undefined;
