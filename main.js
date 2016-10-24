@@ -7,6 +7,17 @@
   var nodesDataset;
   var edgesDataset;
 
+  document.getElementById('input').addEventListener('keypress', (event) => {
+    if (event.keyCode == 13) {
+      findNode(event.target.value);
+      return false;
+    }
+  });
+
+  document.getElementById('clear').addEventListener('click', () => {
+    document.getElementById('input').value = '';
+  });
+
   fetch('concepts.dot')
     .then(res => res.text())
     .then(initNetworkData)
@@ -46,6 +57,22 @@
     network = new vis.Network(container, data, options);
     allNodes = data.nodes.get({returnType: 'Object'});
     network.on('click', neighbourhoodHighlight);
+  }
+
+  function findNode (value) {
+    var bestMatch;
+    var bestResult = 0;
+    var result;
+
+    nodesDataset.forEach((data) => {
+      result = similarity(data.id.toLowerCase(), value.toLowerCase());
+      if (result > bestResult) {
+        bestMatch = data;
+        bestResult = result;
+      }
+    });
+
+    neighbourhoodHighlight({nodes: [bestMatch.id]});
   }
 
   function neighbourhoodHighlight(params) {
@@ -131,5 +158,31 @@
       node.label = node.hiddenLabel;
       node.hiddenLabel = undefined;
     }
+  }
+
+  function freqVector (word, letters) {
+    var freq = _.groupBy(word.split(''), function(l) {return l;});
+    return _.map(letters, function(l) {
+      return freq[l] ? freq[l].length : 0;
+    });
+  }
+
+  function dot (v1, v2) {
+    return _.reduce(_.zip(v1, v2), function(acc, els) {
+      return acc + els[0] * els[1];
+    }, 0);
+  }
+
+  function mag(v) {
+    return Math.sqrt(_.reduce(v, function(acc, el) {
+      return acc + el * el;
+    }, 0));
+  }
+
+  function similarity (word1, word2) {
+    var letters = _.union(word1.split(''), word2.split(''));
+    var v1 = freqVector(word1, letters);
+    var v2 = freqVector(word2, letters);
+    return dot(v1, v2) / (mag(v1) * mag(v2));
   }
 })();
