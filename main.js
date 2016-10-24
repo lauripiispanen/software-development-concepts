@@ -38,6 +38,7 @@
 
     var options = {
       nodes: {
+        shape: 'dot',
         font: {
           size: 16
         }
@@ -51,6 +52,23 @@
       },
       interaction: {
         tooltipDelay: 200
+      },
+      layout: {
+        improvedLayout: false,
+        randomSeed: 6
+      },
+      physics: {
+        solver: 'forceAtlas2Based',
+        stabilization: {iterations: 150},
+        adaptiveTimestep: true,
+        forceAtlas2Based: {
+            gravitationalConstant: -26,
+            centralGravity: 0.0025,
+            springLength: 230,
+            springConstant: 0.18
+        },
+        maxVelocity: 146,
+        timestep: 0.35
       }
     };
 
