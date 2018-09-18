@@ -27,6 +27,7 @@ graph software_concepts {
   "Programming Languages" -- "Ruby"
   "Programming Languages" -- Rust
   "Programming Languages" -- Groovy
+  "Programming Languages" -- Kotlin -- Android
   "Programming Languages" -- PHP -- Composer -- "Dependency Management"
 
   PHP -- Laravel -- "Server-side web frameworks"
@@ -81,10 +82,12 @@ graph software_concepts {
   "Version Control" -- CVS
 
   "Monitoring" -- "New Relic"
+  "Monitoring" -- "Papertrail"
 
   PaaS -- AWS
   PaaS -- Heroku
   PaaS -- "Google Cloud Platform"
+  PaaS -- Azure
 
   "Google Cloud Platform" -- "Compute Engine"
   "Google Cloud Platform" -- "Google Container Engine" -- Docker
@@ -116,6 +119,7 @@ graph software_concepts {
   "Dynamic typing" -- Javascript
   "Dynamic typing" -- Clojure
   "Dynamic typing" -- Groovy
+  "Dynamic typing" -- Ruby
 
   Java -- "Java EE" -- "Application Servers & Servlet Containers"
   "Application Servers & Servlet Containers" -- Tomcat
@@ -174,10 +178,10 @@ graph software_concepts {
 
   Javascript -- "node.js"
   Javascript -- "web frontend"
-  Javascript -- ES6
-  Javascript -- ES2016
-  Javascript -- Promises
-  Javascript -- "Garbage collection"
+  Javascript -- ES6 -- ES7 -- ES8
+  Javascript -- ES2016 -- ES2017 -- ES2018
+  Javascript -- Promises -- "Async/Await"
+  Javascript -- "Garbage collection" -- Java
 
   "node.js" -- Grunt
   "node.js" -- Gulp
@@ -194,22 +198,27 @@ graph software_concepts {
   "Javascript libraries" -- "Angular 2"
   Angular -- "Angular 2"
   "Javascript libraries" -- React -- Redux
+  React -- MobX
+  React -- "CSS-in-JS" -- CSS
 
   "Javascript libraries" -- "Underscore/Lodash"
   "Javascript libraries" -- Ramda
 
   "web frontend" -- HTML
   "web frontend" -- CSS -- BEM
+  CSS -- ITCSS
 
   React -- "React Native" -- iOS
   "React Native" -- Android
 
-  CSS -- "Twitter Bootstrap"
+  CSS -- "Twitter Bootstrap" -- "CSS Frameworks"
+  CSS -- "Foundation" -- "CSS Frameworks"
+  CSS -- "Material UI" -- "CSS Frameworks"
   HTML -- "Twitter Bootstrap"
 
-  "Twitter Bootstrap" -- "Foundation"
   "Twitter Bootstrap" -- "Responsive web design"
   "Foundation" -- "Responsive web design"
+  "Material UI" -- "Responsive web design"
 
   CSS -- "Responsive web design"
   HTML -- "Responsive web design"
@@ -219,6 +228,7 @@ graph software_concepts {
   "node.js" -- "node.js addons" -- "C++"
 
   "node.js" -- "express.js"
+  "node.js" -- "koa"
 
   "Relational databases" -- "NoSQL databases"
 
@@ -313,7 +323,7 @@ graph software_concepts {
 
   TDD -- BDD
   TDD -- ATDD
-  ATDD -- "Robot Framework"
+  ATDD -- "Robot Framework" -- python
   ATDD -- FitNesse
   BDD -- RSpec -- "Ruby libraries"
   BDD -- Cucumber
